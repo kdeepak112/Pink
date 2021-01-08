@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+<meta charset="utf-8">
+<title>AngularJS $interpolateProvider Example</title>
+</head>
+
+<body ng-controller="thisapp">
+<h3>$interpolateProvider startSymbol() and endSymbol</h3>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" style="margin-top: 2%;" ng-repeat="que  in dis_category">
+        <div class="card text-center shadow-lg" style="width:22rem ;">
+            <div class="card-title">
+                <h2>Category :</h2>
+                <span>[[que.type]]</span>
+            </div>
+            <div class="card-body">
+                <h2>Description :</h2>
+                [[que.desc]]
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-warning text-center">
+                    Advice
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="disease.js"></script>
+</body>
+
+</html>

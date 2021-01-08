@@ -1,0 +1,192 @@
+{% extends 'labBase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/main.css' %}">
+{% endblock %}
+{% block title %} Confirm and Unconfirm Booking {% endblock %}
+{% block css %}
+<style>
+body{
+    background: linear-gradient(to right, #f3f5ef 13%, #bae1ee 100%);
+}
+</style>
+{% endblock %}
+{% block body %}
+<div class="container mt-5" ng-app="confirmApp" ng-controller="confirmthisapp">
+    <div class="container" style="display: flex;align-items: center;justify-content: center;">
+        <form action="" method="GET">
+            {{ filter.form }}
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+    </div>
+    <table class="table mt-4" id="_appendHere">
+        <thead>
+            <tr>
+                <th scope="col">Patient id</th>
+                <th scope="col">Patient name</th>
+                <th scope="col">Patient Contact</th>
+                <th scope="col">Patient email</th>
+                <th scope="col">Patient Age</th>
+                <th scope="col">Patient gender</th>
+                <th scope="col">Test name</th>
+                <th scope="col">Test date</th>
+                <th scope="col">Test time</th>
+                <th scope="col">Test status</th>
+                <th scope="col">Report</th>
+            </tr>
+        </thead>
+        {% for i in data %}
+        {% if i.testStatus == 'yes' or i.testStatus == 'Yes' %}
+    {% if not i.report  %}
+        <tbody>
+            <tr>
+                <th scope="row">{{ i.pid }}</th>
+                <td>{{ i.pname }}</td>
+                <td>{{ i.pcontact }}</td>
+                <td>{{ i.pemail }}</td>
+                <td>{{ i.page }}</td>
+                <td>{{ i.pgender }}</td>
+                <td>{{ i.test_name }}</td>
+                <td>{{ i.test_date }}</td>
+                <td>{{ i.test_time }}</td>
+                <td>{{ i.testStatus }}</td>
+                <td>{{ i.id }}</td>
+                <td>
+                    <button
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#staticBackdrop"
+                        href=""
+                        ng-click="upload({{ i.id }},'{{ i.pname }}',{{ i.pcontact }},'{{ i.test_name }}','{{ i.test_date }}')"
+                        class="btn btn-warning"
+                    >Upload Report</button>
+                </td>
+            </tr>
+        </tbody>
+        {% endif%} 
+        {% endif %}
+        {% endfor %}
+    </table>
+    <!-- Button trigger modal -->
+    <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Upload Report</h5>
+                    <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form
+                        onsubmit="return checkForm();"
+                        action="upload/"
+                        method="post"
+                        ng-repeat="uploadReport in uploadReport"
+                        enctype="multipart/form-data"
+                    >
+                        {% csrf_token %}
+                        
+                            Patient Name:
+                        <input
+                            id="username"
+                            name="username"
+                            class="form-control"
+                            value="{[{ uploadReport.patient_name }]}"
+                            type="text"
+                            readonly
+                        >
+                        <!-- form-group// -->
+                        <br>
+                        Booking Id:
+                        <input
+                            id="emailid"
+                            class="form-control"
+                            placeholder="Email address"
+                            name="bookid"
+                            value="{[{ uploadReport.booking_id }]}"
+                            readonly
+                        >
+                        <!-- form-group// -->
+                        <br>
+                        <p>Patient Contact No :</p>
+                        <div class="d-flex">
+                            <select class="custom-select" style="max-width: 70px;">
+                                <option selected="">+91</option>
+                            </select>
+                            <input
+                                id="PhoneNum"
+                                name="phone"
+                                class="form-control"
+                                value="{[{ uploadReport.patient_contact }]}"
+                                type="text"
+                                readonly
+                            >
+                        </div>
+                        <br>
+                        Test Name:
+                        <input
+                            class="form-control"
+                            name="password"
+                            id="fPassword"
+                            value="{[{ uploadReport.Test_name }]}"
+                            readonly
+                        >
+                        <!-- form-group// -->
+                        <br>
+                        Test Date:
+                        <input
+                            class="form-control"
+                            id="cPassword"
+                            value="{[{ uploadReport.Test_date }]}"
+                            readonly
+                        >
+                        <br>
+                        Upload Report :
+                        <input
+                            type="file"
+                            class="form-control"
+                            name="report"
+                            required
+                        >
+                        <!-- form-group// -->
+                        <button type="submit" class="btn btn-success btn-block mt-4 w-50" style="margin: auto;">
+                            Upload Report
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'Logic/Labsignup.js' %}"></script>
+<script src="{% static 'Logic/uploadReport.js' %}"></script>
+<script>
+function display(){
+    if(document.getElementById("service").style.display === "none"){
+        console.log("doing block");
+        document.getElementById("service").style.display = "block";
+    }
+    else{
+        console.log("none hai");
+        document.getElementById("service").style.display = "none";
+    }
+}
+</script>
+{% endblock %}

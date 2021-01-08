@@ -1,0 +1,69 @@
+{% extends 'labBase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/main.css' %}">
+{% endblock %}
+{% block title %} Confirm and Unconfirm Booking {% endblock %}
+{% block css %}
+<style>
+body{
+    background: linear-gradient(to right, #f3f5ef 13%, #bae1ee 100%);
+}
+</style>
+{% endblock %}
+{% block body %}
+<div class="container mt-5" ng-app="confirmApp" ng-controller="confirmthisapp">
+    <div class="container" style="display: flex;align-items: center;justify-content: center;">
+        <form action="" method="GET">
+            {{ filter.form }}
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+    </div>
+    <table class="table mt-4" id="_appendHere">
+        <thead>
+            <tr>
+                
+                <th scope="col">Patient name</th>
+                <th scope="col">Patient Age</th>
+                <th scope="col">Patient gender</th>
+                <th scope="col">Test name</th>
+                
+            </tr>
+        </thead>
+        {% for i in data %}
+        <tbody>
+            <tr>
+                <th scope="row">{{ i.pid }}</th>
+                <td>{{ i.pname }}</td>
+                <td>{{ i.pcontact }}</td>
+                <td>{{ i.pemail }}</td>
+                <td>{{ i.page }}</td>
+                <td>{{ i.pgender }}</td>
+                <td>{{ i.test_name }}</td>
+                <td>{{ i.test_date }}</td>
+                <td>{{ i.test_time }}</td>
+                <td>{{ i.testStatus }}</td>
+                <td>{{ i.bookingStatus }}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'Logic/Labsignup.js' %}"></script>
+<script src="{% static 'Logic/uploadReport.js' %}"></script>
+<script>
+function display(){
+    if(document.getElementById("service").style.display === "none"){
+        console.log("doing block");
+        document.getElementById("service").style.display = "block";
+    }
+    else{
+        console.log("none hai");
+        document.getElementById("service").style.display = "none";
+    }
+}
+</script>
+{% endblock %}

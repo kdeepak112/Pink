@@ -1,0 +1,226 @@
+{% extends 'Newbase.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+<link rel="stylesheet" href="{% static 'Style/style.css' %}">
+<link rel="stylesheet" href="{% static 'Style/covidInfo.css' %}">
+{% endblock %} 
+{% block title %} Covid Near You... {% endblock %} 
+{% block body %}
+<div class="alert alert-success alert-dismissible fade show" role="alert" style="font-size: 1.2rem;">
+    <strong> Booking Status : {{ status }}</strong>
+    <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+    >
+        <span>&times;</span>
+    </button>
+</div>
+<h1 class="text-center mt-5">Book The Lab...</h1>
+<div
+    class="container mt-4"
+    style="margin: auto; width: 50%;"
+    ng-app="labs"
+    ng-controller="userLabs"
+>
+    <form onsubmit="return bookValidate();" action="/bookLab/" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+                    <input
+                        id="username"
+                        name="username"
+                        class="form-control"
+                        placeholder="Full name"
+                        type="text"
+                    >
+                    <br>
+                </div>
+                <!-- form-group// -->
+                <p id="check" class="text-center"></p>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-phone"></i>
+                        </span>
+                    </div>
+                    <select class="custom-select" style="max-width: 70px;">
+                        <option selected="">+91</option>
+                    </select>
+                    <input
+                        id="PhoneNum"
+                        name="phone"
+                        class="form-control"
+                        placeholder="Phone number"
+                        type="text"
+                    >
+                    <!-- Material unchecked -->
+                </div>
+                <!-- form-group// -->
+                <p id="check2" class="text-center"></p>
+                <div class="form-group input-group mt-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-genderless	"></i>
+                        </span>
+                    </div>
+                    <input
+                        id="P_age"
+                        name="age"
+                        class="form-control"
+                        placeholder="Age"
+                        type="text"
+                    >
+                </div>
+                <!-- form-group end.// -->
+                <p id="check4" class="text-center"></p>
+                Select City :
+                <select
+                    class="custom-select mt-2"
+                    ng-model="selectedcity"
+                    ng-options="x.city for x in labCities"
+                    ng-change="show(selectedcity.city)"
+                ></select>
+                Select SubUrb :
+                <select
+                    class="custom-select mt-2"
+                    ng-model="selectedsubUrb"
+                    ng-options="x for x in subUrbs"
+                    ng-change="setLab(selectedsubUrb)"
+                ></select>
+                Choose a time slot:
+                <select class="custom-select mt-2" ng-model="time">
+                    <option>9am - 10am</option>
+                    <option>10am - 11am</option>
+                    <option>11am - 12pm</option>
+                    <option>4pm - 6pm</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                    </div>
+                    <input
+                        id="emailid"
+                        name="email"
+                        class="form-control"
+                        placeholder="Email address"
+                        type="email"
+                    >
+                </div>
+                <!-- form-group// -->
+                <p id="check1" class="text-center"></p>
+                <div class="inline" style="display: flex ; position: relative; justify-content: space-evenly; align-items: center;">
+                    <div class="form-check">
+                        <input
+                            type="radio"
+                            name="gender"
+                            class="form-check-input"
+                            id="Gmale"
+                            name="male"
+                        >
+                        <label class="form-check-label" for="materialUnchecked">Male</label>
+                    </div>
+                    <!-- Material unchecked -->
+                    <div class="form-check">
+                        <input
+                            type="radio"
+                            name="gender"
+                            class="form-check-input"
+                            id="Gfemale"
+                            name="female"
+                        >
+                        <label class="form-check-label" for="materialUnchecked">Female</label>
+                    </div>
+                </div>
+                <p id="check3" class="text-center"></p>
+                Select Lab :
+                <select
+                    class="custom-select mt-2"
+                    ng-model="selectedlab"
+                    ng-options="x for x in labs"
+                    ng-change="setTest(selectedlab)"
+                ></select>
+                Select Test :
+                <select class="custom-select mt-2" ng-model="selectedTest" ng-options="x.test_name for x in labCost"></select>
+                <label for="datemin">Choose a date</label>
+                <br>
+                <input
+                    type="date"
+                    id="datemin"
+                    name="datemin"
+                    ng-model="date"
+                    min="{[{today}]}"
+                    max="{[{future}]}"
+                    ng-change="showdate(date)"
+                >
+            </div>
+        </div>
+        <div class="container" style="display: none;">
+            <div class="d-flex align-items-center justify-content-evenly">
+                <input
+                    name="city"
+                    class="form-control"
+                    type="text"
+                    value="{[{ selectedcity.city }]}"
+                    readonly
+                >
+                <input
+                    name="subUrb"
+                    class="form-control"
+                    type="text"
+                    value="{[{ selectedsubUrb }]}"
+                    readonly
+                >
+                <input
+                    name="lab_name"
+                    class="form-control"
+                    type="text"
+                    value="{[{ selectedlab }]}"
+                    readonly
+                >
+                <input
+                    name="test"
+                    class="form-control"
+                    type="text"
+                    value="{[{ selectedTest.test_name }]}"
+                    readonly
+                >
+                <input
+                    name="time"
+                    class="form-control"
+                    type="text"
+                    value="{[{ time }]}"
+                    readonly
+                >
+                <input
+                    name="date"
+                    class="form-control"
+                    type="text"
+                    value="{[{ bookDate }]}"
+                    readonly
+                >
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mt-4">
+            Book Lab
+        </button>
+    </form>
+</div>
+{% endblock %} 
+{% block js %}
+<script src="{% static 'Logic/main.js' %}"></script>
+<script src="{% static 'Logic/animate.js' %}"></script>
+<script src="{% static 'Logic/lab.js' %}"></script>
+{% endblock %}

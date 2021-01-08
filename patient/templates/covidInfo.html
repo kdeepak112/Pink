@@ -1,0 +1,163 @@
+{% extends 'Newbase.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+<link rel="stylesheet" href="{% static 'Style/style.css' %}">
+<link rel="stylesheet" href="{% static 'Style/covidInfo.css' %}">
+<!-- Including the fusioncharts core library -->
+<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+<!-- Including the angularjs-fusioncharts directive-->
+<script type="text/javascript" src="https://unpkg.com/angularjs-fusioncharts@4.0.1/dist/angular-fusioncharts.js"></script>
+<!-- Including the fusion theme -->
+<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+{% endblock %} 
+{% block title %} Covid Near You... {% endblock %} 
+{% block body %}
+<div class="container text-center mt-5">
+    <h3 class="mt-4">
+        Covid Near You...
+    </h3>
+    <p style="font-size: 1.5rem">
+        Covid-19 has led us to be extra careful. It's always good to know about the
+      condition of the disease around you. Even If you wish to travel you should
+      know the severity of the disease of the place you are travelling to. Here we
+      provide you with the live updated information of covid cases of some of the
+      of affected districts of every state of India. s
+        <br>
+        Take a Look :
+    </p>
+</div>
+<div class="container text-center states" ng-app="covidInfo" ng-controller="covidControl">
+    <div class="container-fluid text-center states mt-5">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <div ng-show="showWorld">
+                    <h1 class="text-center">WORLD</h1>
+                    <p style="font-size: 1.5rem">Find the covid data for the world.</p>
+                    <div class="row data mt-3">
+                        <div class="total">
+                            <h3 class="text-center mt-4">Total</h3>
+                            <h3>{[{world_total}]}</h3>
+                        </div>
+                        <div class="active">
+                            <h3 class="text-center mt-4">Recovered</h3>
+                            <h3>{[{world_recover}]}</h3>
+                        </div>
+                        <div class="confirmed">
+                            <h3 class="text-center mt-4">Deaths</h3>
+                            <h3> {[{world_deaths}]}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="showData">
+                    <h5 class="text-center mt-4">Select Country :</h5>
+                    <select
+                        class="custom-select"
+                        ng-model="selectedDist"
+                        ng-options="x.Country for x in countryData"
+                        ng-change="world_assign(selectedDist.Country)"
+                        style="width: 70%;"
+                    ></select>
+                    <div class="row stateDatas mt-4">
+                        <div class="text-center">
+                            <h5 class="text-center mt-4 ">Total Confirmed</h5>
+                            <h4>{[{total_confirmed}]}</h4>
+                        </div>
+                        <div class="text-center">
+                            <h5 class="text-center mt-4 ">Total Recovered</h5>
+                            <h4>{[{total_recovered}]}</h4>
+                        </div>
+                        <div class="text-center">
+                            <h5 class="text-center mt-4 ">New Confirmed</h5>
+                            <h4>{[{new_confirmed}]}</h4>
+                        </div>
+                        <div class="text-center">
+                            <h5 class="text-center mt-4 ">Total Deaths</h5>
+                            <h4>{[{total_deaths}]}</h4>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-warning mt-5" ng-click="showWorldData()">{[{text}]}</button>
+            </div>
+            <div class="col-md-6 text-center">
+                <div ng-show="stateShow">
+                    <h1 class="text-center">INDIA</h1>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="text-center mt-4">Select State :</h3>
+                            <select
+                                class="custom-select"
+                                ng-model="selectedName"
+                                ng-options="x.state for x in states"
+                                ng-change="assign(selectedName.state)"
+                            ></select>
+                            <!--<select ng-model="selectedName" ng-options="x.state for x in states" ng-change="assign(selectedName.state)"></select>-->
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="text-center mt-4">Select District :</h3>
+                            <select
+                                class="custom-select"
+                                ng-model="selectedDist"
+                                ng-options="x.name for x in dist"
+                                ng-change="dist_assign(selectedName.state,selectedDist.name)"
+                            ></select>
+                        </div>
+                    </div>
+                    <div class="row stateData mt-4">
+                        <div class="text-center">
+                            <h4 class="text-center mt-4 ">Active</h4>
+                            <h4>{[{active}]}</h4>
+                        </div>
+                        <div class="text-center">
+                            <h4 class="text-center mt-4 ">Recovered</h4>
+                            <h4>{[{recovered}]}</h4>
+                        </div>
+                        <div class="text-center">
+                            <h4 class="text-center mt-4 ">Confirmed</h4>
+                            <h4>{[{confirmed}]}</h4>
+                        </div>
+                        <div class="text-center">
+                            <h4 class="text-center mt-4 ">Death</h4>
+                            <h4>{[{death}]}</h4>
+                        </div>
+                    </div>
+                    <span class="mt-5 text-left" style="font-size: 1.5rem;">
+                        <i class="back mt-5 mr-auto fas fa-angle-double-left" ng-click="setShow()"></i>
+                    </span>
+                </div>
+                <div ng-show="indiaShow">
+                    <h1 class="text-center">INDIA</h1>
+                    <p style="font-size: 1.5rem">
+                        Find the covid data for states and districts of india.
+                    </p>
+                    <div class="row data">
+                        <div class="total">
+                            <h3 class="text-center mt-4">Total</h3>
+                            <h3>{[{india_total}]}</h3>
+                        </div>
+                        <div class="active">
+                            <h3 class="text-center mt-4">Recovered</h3>
+                            <h3>{[{india_recover}]}</h3>
+                        </div>
+                        <div class="confirmed">
+                            <h3 class="text-center mt-4">Deaths</h3>
+                            <h3> {[{india_deaths}]}</h3>
+                        </div>
+                    </div>
+                    <button class="btn btn-warning mt-5" ng-click="setShow()">Covid data for states and districts of India</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
+{% block js %}
+<script>
+    $(document).ready(function() {
+$('.mdb-select').materialSelect();
+});
+</script>
+<script src="{% static 'Logic/main.js' %}"></script>
+<script src="{% static 'Logic/animate.js' %}"></script>
+<script src="{% static 'Logic/covid.js' %}"></script>
+{% endblock %}

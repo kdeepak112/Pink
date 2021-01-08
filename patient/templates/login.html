@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+{% endblock %}
+{% block title %} Login {% endblock %}
+{% block body %}
+<div class="alert alert-success alert-dismissible fade show" role="alert" style="font-size: 1.2rem;">
+    <strong>Great Deal.</strong>
+    Enroll yourself and get discount of 70%!!! &nbsp;
+    <button class="btn btn-warning">Enroll Now...!!!</button>
+    <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+    >
+        <span>&times;</span>
+    </button>
+</div>
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Login</h4>
+            <p class="text-center">Log into your Account</p>
+            <p>
+                <a href="" class="btn btn-danger btn-google">
+                    <i class="fab fa-google"></i>
+                    Login via Google
+                </a>
+                <a href="" class="btn btn-primary btn-facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    Login via
+                        facebook
+                </a>
+            </p>
+            <p class="divider-text text-center">
+                <span class="bg-light text">OR</span>
+            </p>
+            <form
+                method="post"
+                name="myForm"
+                action="/check/"
+                ng-app="validate"
+                ng-controller="formValidator"
+            >
+                {% csrf_token %}
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                    </div>
+                    <input
+                        class="form-control"
+                        id="user"
+                        name="email"
+                        placeholder="Email address"
+                        type="email"
+                        ng-model="email"
+                        required
+                    >
+                    <span style="color: red;font-size:1.6rem ; margin-left: 2%;" ng-show="myForm.email.$error.required">*</span>
+                </div>
+                <!-- form-group// -->
+                <p id="demo"></p>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+                    <input
+                        class="form-control"
+                        id="pwd"
+                        name="password"
+                        placeholder="Password"
+                        type="password"
+                        ng-model="password"
+                        required
+                    >
+                    <span style="color: red; font-size:1.6rem ; margin-left: 2%;" ng-show="myForm.password.$error.required">*</span>
+                </div>
+                <!-- form-group// -->
+                <p id="demo1"></p>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block" ng-disabled="myForm.password.$error.required && myForm.email.$error.required">
+                        Login
+                    </button>
+                </div>
+                <!-- form-group// -->
+                <p class="text-center">
+                    Don't Have an account?
+                    <a href="{% url 'signup' %}">Create Account</a>
+                </p>
+                <p class="text-center">Forgot Your Password?
+                    <a href="{% url 'forgot' %}">Forgot Password</a>
+                </p>
+            </form>
+        </article>
+    </div>
+    <!-- card.// -->
+</div>
+<!--container end.//-->
+
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'Logic/main.js' %}"></script>
+<script src="{% static 'Logic/login.js' %}"></script>
+{% endblock %}

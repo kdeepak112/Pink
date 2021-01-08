@@ -1,0 +1,191 @@
+{% extends 'Newbase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+{% endblock %}
+{% block title %} Login {% endblock %}
+{% block body %}
+<div class="alert alert-success alert-dismissible fade show" role="alert" style="font-size: 1.2rem;">
+    <strong>Update Status:</strong>
+    {{ status }}
+    &nbsp;
+    <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+    >
+        <span>&times;</span>
+    </button>
+</div>
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <form
+                onsubmit="return updateForm();"
+                action="/update/{{ user.id }}/"
+                method="post"
+                enctype="multipart/form-data"
+            >
+                {% csrf_token %}
+                <div class="container text-center">
+                    <img src="{{ user.patient_image.url }}" alt="" style="border: 2px solid black; height: 150px; width: 150px ; border-radius: 75px;">
+                    <div class="input-group mb-3 mt-3 text-center">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose Image</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+                    <input
+                        id="username"
+                        name="username"
+                        class="form-control"
+                        placeholder="Full name"
+                        type="text"
+                        value="{{ user.patient_name }}"
+                    >
+                    <br>
+                </div>
+                <!-- form-group// -->
+                <p id="check" class="text-center"></p>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                    </div>
+                    <input
+                        id="emailid"
+                        name="email"
+                        class="form-control"
+                        placeholder="Email address"
+                        type="email"
+                        value="{{ user.patient_email }}"
+                    >
+                </div>
+                <!-- form-group// -->
+                <p id="check1" class="text-center"></p>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-phone"></i>
+                        </span>
+                    </div>
+                    <select class="custom-select" style="max-width: 70px;">
+                        <option selected="">+91</option>
+                    </select>
+                    <input
+                        id="PhoneNum"
+                        name="phone"
+                        class="form-control"
+                        placeholder="Phone number"
+                        type="text"
+                        value="{{ user.patient_phone }}"
+                    >
+                    <!-- Material unchecked -->
+                </div>
+                <!-- form-group// -->
+                <p id="check2" class="text-center"></p>
+                <div class="inline" style="display: flex ; position: relative; justify-content: space-evenly; align-items: center;">
+                    <div class="form-check">
+                        <input
+                            type="radio"
+                            name="gender"
+                            class="form-check-input"
+                            id="Gmale"
+                            name="male"
+                        >
+                        <label class="form-check-label" for="materialUnchecked">Male</label>
+                    </div>
+                    <!-- Material unchecked -->
+                    <div class="form-check">
+                        <input
+                            type="radio"
+                            name="gender"
+                            class="form-check-input"
+                            id="Gfemale"
+                            name="female"
+                        >
+                        <label class="form-check-label" for="materialUnchecked">Female</label>
+                    </div>
+                </div>
+                <p id="check3" class="text-center"></p>
+                <div class="form-group input-group mt-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-genderless	"></i>
+                        </span>
+                    </div>
+                    <input
+                        id="P_age"
+                        name="age"
+                        class="form-control"
+                        placeholder="Age"
+                        type="text"
+                        value="{{ user.patient_age }}"
+                    >
+                </div>
+                <p id="check4" class="text-center"></p>
+                <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+                    <input
+                        class="form-control"
+                        id="OldPassword"
+                        placeholder="Enter old password"
+                        name="oldPass"
+                        type="password"
+                    >
+                </div>
+                <p id="check6" class="text-left"></p>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+                    <input
+                        class="form-control"
+                        id="NewPassword"
+                        placeholder="Enter New password"
+                        type="password"
+                        name="password"
+                    >
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+                    <input
+                        class="form-control"
+                        id="cPassword"
+                        placeholder="Repeat password"
+                        type="password"
+                    >
+                </div>
+                <!-- form-group// -->
+                <p id="check5" class="text-left"></p>
+                <button type="submit" class="btn btn-warning btn-block">
+                    Update Details
+                </button>
+            </form>
+        </article>
+        {% endblock %}
+
+{% block js %}
+        <script src="{% static 'Logic/main.js' %}"></script>
+        <script src="{% static 'Logic/update.js' %}"></script>
+        {% endblock %}

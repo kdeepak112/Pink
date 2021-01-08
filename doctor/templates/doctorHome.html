@@ -1,0 +1,470 @@
+{% extends 'doctorBase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'main.css' %}">
+{% endblock %}
+{% block title %} Online Doctors {% endblock %}
+{% block css %}
+<style></style>
+{% endblock %}
+{% block body %}
+<div class="container-fluid navbarImg" style="background-image: url(../static/doctorHome.jpg);">
+    <nav>
+        <div class="title" style="color: black;">
+            <h1>DocTalk</h1>
+        </div>
+        <div class="services mt-3" id="service" style="color: black;">
+            <ul>
+                <li>
+                    <a data-toggle="modal" href="#myModal">Signup</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <a data-toggle="modal" href="#myloginModal">SignIn</a>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="Loginmodal" data-target="#Login">Know More</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="responsive">
+        <i class="fa fa-bars" aria-hidden="true" onclick="display()"></i>
+    </div>
+    <div class="container testUs text-right">
+        <h1>Talk To Us...</h1>
+        <h1>We Are There For You...</h1>
+        <button class="btn btn-lg btn-transparent mt-3">
+            <a href="#explore" style="text-decoration: none; color: inherit;">EXPLORE</a>
+        </button>
+    </div>
+</div>
+<div class="container text-center mt-5" id="explore">
+    <h1>Technology as a tree is spreading its roots to every aspect of the society...</h1>
+    <br>
+    <h3>This led us to introduce the concept of DocTalk...</h3>
+    <br>
+    <h4>
+        DocTalk is a way to reach out to patients and give them a interface to consult Doctors.
+        <br>
+        <br>
+        Look What we Offer You...
+    </h4>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div id="f1_container">
+                <div id="f1_card" class="shadow">
+                    <div class="front face">
+                        <img class="image" src="{% static 'Home/manage.jpg' %}">
+                    </div>
+                    <div class="back face center">
+                        <div class="container">
+                            <h4>Talk...</h4>
+                            <p>
+                                Yes you heard it right. We you help your Talk to  your patients and provide features like
+                                <ul class="text-left">
+                                    <li>Patients List</li>
+                                    <li>Upload Prescriptions</li>
+                                </ul>
+                            </p>
+                            <button class="btn btn-warning">Know More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="f1_container">
+                <div id="f1_card" class="shadow">
+                    <div class="front face">
+                        <img class="image" src="{% static 'Home/reach.jpg' %}">
+                    </div>
+                    <div class="back face center">
+                        <div class="container">
+                            <h4>Reach...</h4>
+                            <p>
+                                Yes you heard it right. We provide you the reach to our ever growing users count and features like
+                                <ul class="text-left">
+                                    <li>Advertisements</li>
+                                    <li>Profile</li>
+                                    <li>Rating By patients</li>
+                                </ul>
+                            </p>
+                            <button class="btn btn-warning">Know More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5 text-center">
+    <h2>Still have questions...Have a look at some FAQ's...</h2>
+    <div class="accordion text-center" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button
+                        class="btn btn-link btn-block text-left text-center"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseOne"
+                        aria-expanded="true"
+                        aria-controls="collapseOne"
+                    >
+                        Collapsible Group Item #1
+                    </button>
+                </h2>
+            </div>
+            <div
+                id="collapseOne"
+                class="collapse show"
+                aria-labelledby="headingOne"
+                data-parent="#accordionExample"
+            >
+                <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button
+                        class="btn btn-link btn-block text-left collapsed text-center"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseTwo"
+                        aria-expanded="false"
+                        aria-controls="collapseTwo"
+                    >
+                        Collapsible Group Item #2
+                    </button>
+                </h2>
+            </div>
+            <div
+                id="collapseTwo"
+                class="collapse"
+                aria-labelledby="headingTwo"
+                data-parent="#accordionExample"
+            >
+                <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button
+                        class="btn btn-link btn-block text-left collapsed text-center"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseThree"
+                        aria-expanded="false"
+                        aria-controls="collapseThree"
+                    >
+                        Collapsible Group Item #3
+                    </button>
+                </h2>
+            </div>
+            <div
+                id="collapseThree"
+                class="collapse"
+                aria-labelledby="headingThree"
+                data-parent="#accordionExample"
+            >
+                <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-app="labInfo">
+    <div
+        class="modal fade"
+        id="myModal"
+        role="dialog"
+        ng-controller="labControl"
+    >
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-space-between align-items-center">
+                    <h4 class="modal-title mr-auto">SignUp</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="card bg-light">
+                            <article class="card-body mx-auto" style="max-width: 400px;">
+                                <h4 class="card-title mt-3 text-center">Create Account</h4>
+                                <p class="text-center">Get started with your free account</p>
+                                <form onsubmit="return checkDoc();" action="DocRegister/" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                        </div>
+                                        <input
+                                            id="username"
+                                            name="username"
+                                            class="form-control"
+                                            placeholder="Doctor Name"
+                                            type="text"
+                                        >
+                                        <br>
+                                    </div>
+                                    <!-- form-group// -->
+                                    <p id="check" class="text-center"></p>
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-envelope"></i>
+                                            </span>
+                                        </div>
+                                        <input
+                                            id="emailid"
+                                            name="email"
+                                            class="form-control"
+                                            placeholder="Email address"
+                                            type="email"
+                                        >
+                                    </div>
+                                    <!-- form-group// -->
+                                    <p id="check1" class="text-center"></p>
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-phone"></i>
+                                            </span>
+                                        </div>
+                                        <select class="custom-select" style="max-width: 70px;">
+                                            <option selected="">+91</option>
+                                        </select>
+                                        <input
+                                            id="PhoneNum"
+                                            name="phone"
+                                            class="form-control"
+                                            placeholder="Phone number"
+                                            type="number"
+                                        >
+                                        <!-- Material unchecked -->
+                                    </div>
+                                    <!-- form-group// -->
+                                    <p id="check2" class="text-center"></p>
+                                    <input
+                                        id="age"
+                                        name="age"
+                                        class="form-control"
+                                        placeholder="Age"
+                                        maxlength="2"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        type="number"
+                                    >
+                                    <p id="checkage"></p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            Select Gender :
+                                            <select class="custom-select mt-2" ng-model="selectedGender" ng-options="x for x in gender"></select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            Select Specialisation :
+                                            <select
+                                                class="custom-select mt-2"
+                                                ng-model="selectedName"
+                                                ng-options="x for x in specialisation"
+                                                required
+                                            ></select>
+                                        </div>
+                                    </div>
+                                    <p id="check_special" class="text-center"></p>
+                                    <div class="row mt-3" style="display: none;">
+                                        <div class="col-md-6">
+                                            <input
+                                                id="specialisation"
+                                                name="specialisation"
+                                                class="form-control"
+                                                type="text"
+                                                value="{[{ selectedName }]}"
+                                                readonly
+                                            >
+                                            <input
+                                                id="gender"
+                                                name="gender"
+                                                class="form-control"
+                                                type="text"
+                                                value="{[{ selectedGender }]}"
+                                                readonly
+                                            >
+                                        </div>
+                                    </div>
+                                    <p id="check3" class="text-center"></p>
+                                    <!-- form-group end.// -->
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-map-pin" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                        <input
+                                            id="Experience"
+                                            name="Experience"
+                                            class="form-control"
+                                            placeholder="Experience"
+                                            type="number"
+                                        >
+                                        <br>
+                                    </div>
+                                    <p id="check6" class="text-left"></p>
+                                    <p id="check4" class="text-center"></p>
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-lock"></i>
+                                            </span>
+                                        </div>
+                                        <input
+                                            class="form-control"
+                                            name="password"
+                                            placeholder="Create password"
+                                            id="fPassword"
+                                            type="password"
+                                        >
+                                    </div>
+                                    <!-- form-group// -->
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-lock"></i>
+                                            </span>
+                                        </div>
+                                        <input
+                                            class="form-control"
+                                            id="cPassword"
+                                            placeholder="Repeat password"
+                                            type="password"
+                                        >
+                                    </div>
+                                    <!-- form-group// -->
+                                    <p id="check5" class="text-left"></p>
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                        Create Account
+                                    </button>
+                                </form>
+                            </article>
+                            <h4 class="text-center">{{ result }}</h4>
+                        </div>
+                        <!-- card.// -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myloginModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-space-between align-items-center">
+                    <h4 class="modal-title mr-auto">Login</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="card bg-light">
+                            <article class="card-body mx-auto" style="max-width: 400px;">
+                                <h4 class="card-title mt-3 text-center">Login</h4>
+                                <form
+                                    method="post"
+                                    name="myForm"
+                                    action="docLogin/"
+                                    ng-controller="formValidator"
+                                >
+                                    {% csrf_token %}
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-envelope"></i>
+                                            </span>
+                                        </div>
+                                        <input
+                                            class="form-control"
+                                            id="user"
+                                            name="email"
+                                            placeholder="Email address"
+                                            type="email"
+                                            ng-model="email"
+                                            required
+                                        >
+                                        <span style="color: red;font-size:1.6rem ; margin-left: 2%;" ng-show="myForm.email.$error.required">*</span>
+                                    </div>
+                                    <!-- form-group// -->
+                                    <p id="demo"></p>
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-lock"></i>
+                                            </span>
+                                        </div>
+                                        <input
+                                            class="form-control"
+                                            id="pwd"
+                                            name="password"
+                                            placeholder="Password"
+                                            type="password"
+                                            ng-model="password"
+                                            required
+                                        >
+                                        <span style="color: red; font-size:1.6rem ; margin-left: 2%;" ng-show="myForm.password.$error.required">*</span>
+                                    </div>
+                                    <!-- form-group// -->
+                                    <p id="demo1"></p>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-block" ng-disabled="myForm.password.$error.required && myForm.email.$error.required">
+                                            Login
+                                        </button>
+                                    </div>
+                                    <!-- form-group// -->
+                                    <p class="text-center">
+                                        Don't Have an account?
+                                        <a href="{% url 'signup' %}">Create Account</a>
+                                    </p>
+                                </form>
+                            </article>
+                        </div>
+                        <!-- card.// -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'check.js' %}"></script>
+<script>
+function display(){
+    if(document.getElementById("service").style.display === "none"){
+        console.log("doing block");
+        document.getElementById("service").style.display = "block";
+    }
+    else{
+        console.log("none hai");
+        document.getElementById("service").style.display = "none";
+    }
+}
+</script>
+{% endblock %}

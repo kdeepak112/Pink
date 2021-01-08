@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+{% endblock %}
+{% block title %} SignUp - Register Your Self {% endblock %}
+{% block body %}
+<div class="alert text-center alert-success alert-dismissible fade show" role="alert" style="font-size: 1.2rem;">
+    {% if result %}
+    <strong>{{ result }}</strong>
+    {% else %}
+    <strong>Great Deal.</strong>
+    Enroll yourself and get discount of 70%!!! &nbsp;
+    <button class="btn btn-warning text-left">Enroll Now...!!!</button>
+    {% endif %}
+    <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+    >
+        <span>&times;</span>
+    </button>
+</div>
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <p class="text-center">Get started with your free account</p>
+            <p>
+                <a href="" class="btn btn-danger btn-google">
+                    <i class="fab fa-google"></i>
+                    Login via Google
+                </a>
+                <a href="" class="btn btn-primary btn-facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    Login via
+                        facebook
+                </a>
+            </p>
+            <p class="divider-text text-center">
+                <span class="bg-light">OR</span>
+            </p>
+            <form
+                onsubmit="return checkForm();"
+                action="/result/"
+                method="post"
+                ng-app="lab"
+                ng-controller="labCon"
+            >
+                {% csrf_token %}
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+                    <input
+                        id="username"
+                        name="username"
+                        class="form-control"
+                        placeholder="Full name"
+                        type="text"
+                    >
+                    <br>
+                </div>
+                <!-- form-group// -->
+                <p id="check" class="text-center"></p>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                    </div>
+                    <input
+                        id="emailid"
+                        name="email"
+                        class="form-control"
+                        placeholder="Email address"
+                        type="email"
+                    >
+                </div>
+                <!-- form-group// -->
+                <p id="check1" class="text-center"></p>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-phone"></i>
+                        </span>
+                    </div>
+                    <select class="custom-select" style="max-width: 70px;">
+                        <option selected="">+91</option>
+                    </select>
+                    <input
+                        id="PhoneNum"
+                        name="phone"
+                        class="form-control"
+                        placeholder="Phone number"
+                        type="number"
+                        maxlength="10"
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    >
+                    <!-- Material unchecked -->
+                </div>
+                <!-- form-group// -->
+                <p id="check2" class="text-center"></p>
+                <div class="row">
+                    <div class="col-md-12">
+                        Select Gender :
+                        <select class="custom-select mt-2" ng-model="selectedGender" ng-options="x for x in gender"></select>
+                    </div>
+                </div>
+                <p id="gender_check" class="text-center"></p>
+                <div class="row mt-3" style="display: none;">
+                    <div class="col-md-6">
+                        <input
+                            name="gender"
+                            id="gender"
+                            class="form-control"
+                            type="text"
+                            value="{[{ selectedGender }]}"
+                            readonly
+                        >
+                    </div>
+                </div>
+                <p id="check3" class="text-center"></p>
+                <div class="form-group input-group mt-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-genderless	"></i>
+                        </span>
+                    </div>
+                    <input
+                        id="P_age"
+                        name="age"
+                        class="form-control"
+                        placeholder="Age"
+                        type="number"
+                        maxlength="2"
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    >
+                </div>
+                <!-- form-group end.// -->
+                <p id="check4" class="text-center"></p>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="password"
+                        placeholder="Create password"
+                        id="fPassword"
+                        type="password"
+                    >
+                </div>
+                <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+                    <input
+                        class="form-control"
+                        id="cPassword"
+                        placeholder="Repeat password"
+                        type="password"
+                    >
+                </div>
+                <!-- form-group// -->
+                <p id="check5" class="text-left"></p>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Create Account
+                </button>
+                <p class="text-center">
+                    Have an account?
+                    <a href="{% url 'login' %}">Log In</a>
+                </p>
+            </form>
+        </article>
+        <h4 class="text-center"></h4>
+    </div>
+    <!-- card.// -->
+</div>
+<!--container end.//-->
+{% endblock %}
+
+    {% block js %}
+<script src="{% static 'Logic/main.js' %}"></script>
+<script src="{% static 'Logic/signup.js' %}"></script>
+{% endblock %}

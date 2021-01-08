@@ -1,0 +1,43 @@
+{% extends 'Newbase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+<link rel="stylesheet" href="{% static 'Style/style.css' %}">
+{% endblock %}
+{% block title %} Write Your Blog {% endblock %}
+{% block body %}
+<div class="container text-center mt-3">
+    <h2>See Your Requests and Their Status ....</h2>
+</div>
+<div class="container mt-4 text-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Doctor Name</th>
+                <th scope="col">Doctor Speciality</th>
+                <th scope="col">Request Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for docList in docList %}
+            <tr>
+                <td>{{ docList.to_doctor.doc_name }}</td>
+                <td>{{ docList.to_doctor.doc_speciality }}</td>
+                <td style="margin-left:auto;" >
+                    {{ docList.status }}
+                {% if docList.status == 'accepted' %}
+                    <a href="{% url 'Dmessage' docList.to_doctor.id  %}" class="btn btn-warning">Start Chatting</a>
+                    {% endif %}
+                </td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'Logic/main.js' %}"></script>
+<script src="{% static 'Logic/animate.js' %}"></script>
+<script src="{% static 'Logic/disease.js' %}"></script>
+{% endblock %}

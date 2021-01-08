@@ -1,0 +1,55 @@
+{% extends 'Newbase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+<link rel="stylesheet" href="{% static 'Style/style.css' %}">
+{% endblock %}
+{% block title %} Write Your Blog {% endblock %}
+{% block body %}
+<div class="alert alert-success  text-center alert-dismissible fade show" role="alert" style="font-size: 1.2rem;">
+    <strong>Please Note...</strong>
+    We advise you to be general in your
+    <br>
+    approach by not targetting any individual or an organisation in your words and also make sure that you dont use any abusive or agressive words.. &nbsp;
+    <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+    >
+        <span>&times;</span>
+    </button>
+</div>
+<div class="container  text-center" style="margin: auto;">
+    <div class="container bg-light p_nav mt-3">
+        <div class="container bg-light p_nav mt-3" >
+            <div class="s_nav" style="display: flex; align-items: center; justify-content: space-evenly; font-size: 1.3rem;">
+                <a href="{% url 'allBlog' %}">See Other's Blog</a>
+                <a href="{% url 'yourBlog' %}">See Your Blogs</a>
+                <a>Contact Administrator</a>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            {% for i in blog %}
+            <div class="col-md-6 text-left" >
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: white;">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <h3 class="mb-0">{{i.topic}}</h3>
+                        <div class="mb-1 text-muted">{{i.timestamp}}</div>
+                        <p class="card-text mb-auto">{{i.desc}}</p>
+                        <a href="readBlog/{{ i.id }}" class="stretched-link">Continue reading</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'Logic/main.js' %}"></script>
+<script src="{% static 'Logic/animate.js' %}"></script>
+<script src="{% static 'Logic/disease.js' %}"></script>
+{% endblock %}

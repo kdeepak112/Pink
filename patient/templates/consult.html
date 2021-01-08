@@ -1,0 +1,259 @@
+{% extends 'Newbase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+<link rel="stylesheet" href="{% static 'Style/card.css' %}">
+{% endblock %}
+{% block title %} Consult - The specialists {% endblock %}
+{% block body %}
+<div class="intro container-fluid mt-2" style="position: relative;text-align: center;">
+    <img src="{% static 'Home/Features/health.jpg' %}" alt="" style="width: 100%; 
+        height:550px; border:3px solid black;">
+    <div style="position: absolute;
+        right:32%;
+        top:28%;
+        font-size: 5.5vw;
+        ">
+        Consult
+        <br>
+        &nbsp;&nbsp;&nbsp; The
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Best...
+    </div>
+</div>
+<div class=" container info text-center mt-4">
+    <hr style="border:1px solid black;">
+    <p style="font-size: 2.5rem;">
+        This section provides you the Gateway
+        <br>
+        to reach out the best specialists in
+            the country to consult .
+    </p>
+    <hr style="border:1px solid black;">
+</div>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-xs-4 col-sm-12 col-md-6 col-lg-4">
+            <div class="card middle" style="border:2px solid black;">
+                <div class="front">
+                    <img src="{% static 'Home/Facility/Physician.png' %}" alt="">
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <h2>DarkCode</h2>
+                        <span>Youtube Channel</span>
+                        <div class="sm">
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container text-center" style="position: relative;
+                top:50px;
+                ">
+                <hr style="border:1px solid black;">
+                <h2>
+                    <a href="{% url 'displayDoc' 'General Physician' %}" style="color: inherit; text-decoration: none;">General Physician</a>
+                </h2>
+                <hr style="border:1px solid black;">
+            </div>
+        </div>
+        <div class="col-xs-4 col-sm-12 col-md-6 col-lg-4">
+            <div class="card middle" style="border:2px solid black;">
+                <div class="front">
+                    <img src="{% static 'Home/Facility/Pediatrician.png' %}" alt="">
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <h2>DarkCode</h2>
+                        <span>Youtube Channel</span>
+                        <div class="sm">
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container text-center" style="position: relative;
+                top:50px;
+                ">
+                <hr style="border:1px solid black;">
+                <h2>
+                    <a href="{% url 'displayDoc' 'Pediatrician' %}" style="color: inherit; text-decoration: none;">Pediatrician</a>
+                </h2>
+                <hr style="border:1px solid black;">
+            </div>
+        </div>
+        <div class="col-xs-4 col-sm-12 col-md-6 col-lg-4">
+            <div class="card middle" style="border:2px solid black;">
+                <div class="front">
+                    <img src="{% static 'Home/Facility/Orthopedician.png' %}" alt="">
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <h2>DarkCode</h2>
+                        <span>Youtube Channel</span>
+                        <div class="sm">
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container text-center" style="position: relative;
+                top:50px;
+                ">
+                <hr style="border:1px solid black;">
+                <h2>
+                    <a href="{% url 'displayDoc' 'Orthopedician' %}" style="color: inherit; text-decoration: none;">Orthopedician</a>
+                </h2>
+                <hr style="border:1px solid black;">
+            </div>
+        </div>
+        <div class="col-xs-4 col-sm-12 col-md-6 col-lg-4">
+            <div class="card middle" style="border:2px solid black;">
+                <div class="front">
+                    <img src="{% static 'Home/Facility/Gynecologist.png' %}" alt="">
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <h2>DarkCode</h2>
+                        <span>Youtube Channel</span>
+                        <div class="sm">
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container text-center" style="position: relative;
+                top:50px;
+                ">
+                <hr style="border:1px solid black;">
+                <h2>
+                    <a href="{% url 'displayDoc' 'Gynecologist' %}" style="color: inherit; text-decoration: none;">Gynecologist</a>
+                </h2>
+                <hr style="border:1px solid black;">
+            </div>
+        </div>
+        <div class="col-xs-4 col-sm-12 col-md-6 col-lg-4">
+            <div class="card middle" style="border:2px solid black;">
+                <div class="front">
+                    <img src="{% static 'Home/Facility/gastroenterology.png' %}" alt="">
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <h2>DarkCode</h2>
+                        <span>Youtube Channel</span>
+                        <div class="sm">
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container text-center" style="position: relative;
+                top:50px;
+                ">
+                <hr style="border:1px solid black;">
+                <h2>
+                    <a href="{% url 'displayDoc' 'Gastroenterologist' %}" style="color: inherit; text-decoration: none;">Gastroenterologist</a>
+                </h2>
+                <hr style="border:1px solid black;">
+            </div>
+        </div>
+        <div class="col-xs-4 col-sm-12 col-md-6 col-lg-4">
+            <div class="card middle" style="border:2px solid black;">
+                <div class="front">
+                    <img src="{% static 'Home/Facility/Diet.png' %}" alt="">
+                </div>
+                <div class="back">
+                    <div class="back-content middle">
+                        <h2>DarkCode</h2>
+                        <span>Youtube Channel</span>
+                        <div class="sm">
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container text-center" style="position: relative;
+                top:50px;
+                ">
+                <hr style="border:1px solid black;">
+                <h2>
+                    <a href="{% url 'displayDoc' 'Dietician' %}" style="color: inherit; text-decoration: none;">Dietician</a>
+                </h2>
+                <hr style="border:1px solid black;">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'Logic/main.js' %}"></script>
+{% endblock %}

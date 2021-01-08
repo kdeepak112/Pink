@@ -1,0 +1,230 @@
+{% extends 'Newbase.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+<link rel="stylesheet" href="{% static 'Style/style.css' %}">
+<link rel="stylesheet" href="{% static 'Style/covidInfo.css' %}">
+{% endblock %} 
+{% block title %} Self Assessment Test... {% endblock %} 
+{% block body %}
+<div class="container self text-center">
+    <h1>
+        <u>Self Assessment Test...</u>
+    </h1>
+    <p class=" info mt-3">
+        This tool is designed to help you make decisions about seeking appropriate medical care if you are concerned about the coronavirus (COVID-19). This tool is not intended to provide a diagnosis or provide treatment of disease or other conditions.
+        <br>
+        Most people with COVID-19 have mild symptoms and do not require treatment for their condition.
+        <br>
+        Do you want help to figure out if you should seek medical care for a possible COVID-19 infection?
+    </p>
+    <button class="btn btn-lg btn-warning" data-toggle="modal" data-target="#staticBackdrop">Accept and Start Assessment..</button>
+</div>
+<div
+    class="modal fade"
+    id="staticBackdrop"
+    data-backdrop="static"
+    data-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Self Assessment Test...</h5>
+                <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="assess">
+                    <div class="question1" id="q1">
+                        <h3>Are you experiencing any of the following symptoms?</h3>
+                        <ul style="text-align: left;">
+                            <li>
+                                severe difficulty breathing (for example, struggling for each breath, speaking in single
+                                words)
+                            </li>
+                            <li>severe chest pain</li>
+                            <li>
+                                having a very hard time waking up
+                            </li>
+                            <li>
+                                feeling confused
+                            </li>
+                            <li>lost consciousness</li>
+                        </ul>
+                        <div class="d-flex justify-content-center  align-items-center">
+                            <button class="btn btn-primary" id="q1b">No</button>
+                            <button class="btn ml-3 btn-primary" id="q2b">Yes</button>
+                        </div>
+                    </div>
+                    <div class="question" id="q2">
+                        <h5>
+                            <a role="button" id="q2r" style="cursor: pointer;">
+                                <u>Return to Previous question</u>
+                            </a>
+                        </h5>
+                        <h3>Are you experiencing any of the following symptoms (or a combination of these symptoms)?</h3>
+                        <ul style="text-align: left;">
+                            <li>fever</li>
+                            <li>new cough</li>
+                            <li>
+                                difficulty breathing (for example, struggling for each breath, cannot hold breath for more
+                                than
+                                10 seconds)
+                            </li>
+                        </ul>
+                        <div class="d-flex justify-content-center  align-items-center">
+                            <button class="btn btn-primary" id="q3b">No</button>
+                            <button class="btn ml-3 btn-primary" id="q4b">Yes</button>
+                        </div>
+                    </div>
+                    <div class="question" id="q3">
+                        <h5>
+                            <a role="button" id="q3r" style="cursor: pointer;">
+                                <u>Return to Previous question</u>
+                            </a>
+                        </h5>
+                        <h3>Are you experiencing any of the following symptoms (or a combination of these symptoms)?</h3>
+                        <ul style="text-align: left;">
+                            <li>muscle aches</li>
+                            <li>fatigue</li>
+                            <li>headache</li>
+                            <li>sore throat</li>
+                            <li>runny nose</li>
+                        </ul>
+                        <div class="d-flex justify-content-center  align-items-center">
+                            <button class="btn btn-primary" id="q5b">No</button>
+                            <button class="btn ml-3 btn-primary" id="q6b">Yes</button>
+                        </div>
+                    </div>
+                    <div class="question" id="q4">
+                        <h5>
+                            <a role="button" id="q4r" style="cursor: pointer;">
+                                <u>Return to Previous question</u>
+                            </a>
+                        </h5>
+                        <h3>Have you travelled outside of India in the last 14 days?</h3>
+                        <button class="btn btn-primary" id="q7b">No</button>
+                        <button class="btn btn-primary" id="q8b">Yes</button>
+                    </div>
+                    <div class="question" id="q5">
+                        <h5>
+                            <a role="button" id="q5r" style="cursor: pointer;">
+                                <u>Return to Previous question</u>
+                            </a>
+                        </h5>
+                        <h3>
+                            Does someone you are in close contact with have COVID-19 (for example, someone in your household
+                            or workplace)?
+                        </h3>
+                        <div class="d-flex justify-content-center  align-items-center">
+                            <button class="btn btn-primary" id="q9b">No</button>
+                            <button class="btn ml-3 btn-primary" id="q10b">Yes</button>
+                        </div>
+                    </div>
+                    <div class="question" id="q6">
+                        <h5>
+                            <a role="button" id="q6r" style="cursor: pointer;">
+                                <u>Return to Previous question</u>
+                            </a>
+                        </h5>
+                        <h3>
+                            Are you in close contact with a person who is sick with respiratory symptoms (for example,fever, cough or difficulty breathing) who recently travelled outside of India?
+                        </h3>
+                        <div class="d-flex justify-content-center  align-items-center">
+                            <button class="btn btn-primary" id="q11b">No</button>
+                            <button class="btn ml-3 btn-primary" id="q12b">Yes</button>
+                        </div>
+                    </div>
+                    <!--   RESULT SECTIONS  -->
+                    <div class="question" id="emergencyInfo">
+                        <h3>Self-assessment result</h3>
+                        <h5>
+                            Please call 1075, +91-11-23978046 or email at ncov2019@gmail.com or go directly to your nearest
+                            emergency department.
+                        </h5>
+                        <p>
+                            <small>Data Adapted from Ministry of Health and Family Welfare.</small>
+                        </p>
+                        <button class="btn btn-primary" onclick="location.reload();">Take The Assessment again...</button>
+                    </div>
+                    <div class="question" id="callNurse">
+                        <h3>Self-assessment result</h3>
+                        <h5>Please seek clinical assessment for COVID-19 over the phone.</h5>
+                        <p style="font-size:1.2rem;">Contact either:</p>
+                        <ul style="text-align: left;">
+                            <li>your primary care provider (for example, family doctor) for a virtual assessment</li>
+                            <li>
+                                Please call at Toll free: 1075 or
+                                <a href="tel:+911123978046">+91-11-23978046</a>
+                                and to
+                                speak with a COVID-19 Emergency Helpline
+                            </li>
+                        </ul>
+                        <p>
+                            <small>Data Adapted from Ministry of Health and Family Welfare.</small>
+                        </p>
+                        <button class="btn btn-primary" onclick="location.reload();">Take The Assessment again...</button>
+                    </div>
+                    <div class="question" id="selfIsolate">
+                        <h3>Self-assessment result</h3>
+                        <ul style="text-align: left;">
+                            <li>
+                                It is unlikely that you have COVID-19 but you should self-isolate at home until you are
+                                symptom-free.
+                            </li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="location.reload();">Take The Assessment again...</button>
+                    </div>
+                    <div class="question" id="unlikelyCovid19">
+                        <h3>Self-assessment result</h3>
+                        <ul style="text-align: left;">
+                            <li>
+                                It is unlikely that you have COVID-19 but you should self-isolate at home until you are
+                                symptom-free.
+                            </li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="location.reload();">Take The Assessment again...</button>
+                    </div>
+                    <div class="question" id="unlikelySick">
+                        <h3>Self-assessment result</h3>
+                        <ul style="text-align: left;">
+                            <li>It is unlikely that you have COVID-19.</li>
+                        </ul>
+                        <h3>You Should</h3>
+                        <ul style="text-align: left;">
+                            <li>practice social distancing in order to decrease risk of COVID-19 transmission.</li>
+                        </ul>
+                        <h3>if you:</h3>
+                        <ul style="text-align: left;">
+                            <li>are over 70</li>
+                            <li>
+                                are immunocompromised (for example if you have HIV/AIDS, are receiving immunosuppression
+                                therapy
+                                or treatment for cancer or have had a transplant)
+                            </li>
+                            <li>have returned to India from travel in the last 14 days</li>
+                            <li>have come into contact with someone with respiratory symptoms</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="location.reload();">Take The Assessment again...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %} 
+{% block js %}
+<script src="{% static 'Logic/main.js' %}"></script>
+<script src="{% static 'Logic/animate.js' %}"></script>
+<script src="{% static 'Logic/assess.js' %}"></script>
+{% endblock %}

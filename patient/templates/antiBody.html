@@ -1,0 +1,26 @@
+{% extends 'Newbase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+<link rel="stylesheet" href="{% static 'Style/style.css' %}">
+{% endblock %}
+{% block title %} Covid Antibody Test {% endblock %}
+{% block body %}
+
+<div class="container  text-center" style="margin: auto;">
+   
+    <h1 class="mt-5">COVID ANTIBODY TEST</h1>
+    <h3 class="mt-5">To keep things simple we have integrated the COVID antibody test with our regular lab booking module.
+        <br>
+        But we make sure that our sample collector will be properly equipped with all the necessary equipments and would be careful and aware of all the laid protocols while taking the sample.
+        <br>
+        To book the test heres providing you the link...
+    </h3>
+    <a href="{% url 'UserLab' %}" class="btn btn-warning">Take Test</a>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'Logic/main.js' %}"></script>
+<script src="{% static 'Logic/animate.js' %}"></script>
+<script src="{% static 'Logic/disease.js' %}"></script>
+{% endblock %}

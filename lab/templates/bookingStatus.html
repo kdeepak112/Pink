@@ -1,0 +1,90 @@
+{% extends 'labBase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/main.css' %}">
+{% endblock %}
+{% block title %} Confirm and Unconfirm Booking {% endblock %}
+{% block css %}
+<style>
+body{
+    background: linear-gradient(to right, #f3f5ef 13%, #bae1ee 100%);
+}
+</style>
+{% endblock %}
+{% block body %}
+<div class="container mt-5" ng-app="confirmApp" ng-controller="confirmthisapp">
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="font-size: 1.2rem;">
+        <strong>{{ msg }}</strong>
+       
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+        >
+            <span>&times;</span>
+        </button>
+    </div>
+    <div class="container" style="display: flex;align-items: center;justify-content: center;"></div>
+    <table class="table mt-4" id="_appendHere">
+        <thead>
+            <tr>
+                <th scope="col">Booking id</th>
+                <th scope="col">Patient name</th>
+                <th scope="col">Patient Contact</th>
+                <th scope="col">Patient email</th>
+                <th scope="col">Patient Age</th>
+                <th scope="col">Patient gender</th>
+                <th scope="col">Test name</th>
+                <th scope="col">Test date</th>
+                <th scope="col">Test time</th>
+                <th scope="col">Test status</th>
+                <th scope="col">Booking Status</th>
+                <th scope="col">Update Booking Status</th>
+            </tr>
+        </thead>
+        {% for i in data %}
+    {% if i.testStatus == 'no' or i.testStatus == 'No' %}
+    {% if i.bookingStatus == 'yes' or i.bookingStatus == 'Yes' %}
+        <tbody>
+            <tr>
+                <th scope="row">{{ i.id }}</th>
+                <td>{{ i.pname }}</td>
+                <td>{{ i.pcontact }}</td>
+                <td>{{ i.pemail }}</td>
+                <td>{{ i.page }}</td>
+                <td>{{ i.pgender }}</td>
+                <td>{{ i.test_name }}</td>
+                <td>{{ i.test_date }}</td>
+                <td>{{ i.test_time }}</td>
+                <td>{{ i.testStatus }}</td>
+                <td>{{ i.bookingStatus }}</td>
+                <td>
+                    <a href="updateBooking/{{ i.id }}" class="btn btn-warning">Update Status</a>
+                </td>
+            </tr>
+        </tbody>
+        {% endif %} 
+        {% endif %}
+        {% endfor %}
+    </table>
+    <!-- Button trigger modal -->
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'Logic/Labsignup.js' %}"></script>
+<script src="{% static 'Logic/bookingStatus.js' %}"></script>
+<script>
+function display(){
+    if(document.getElementById("service").style.display === "none"){
+        console.log("doing block");
+        document.getElementById("service").style.display = "block";
+    }
+    else{
+        console.log("none hai");
+        document.getElementById("service").style.display = "none";
+    }
+}
+</script>
+{% endblock %}

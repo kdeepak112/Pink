@@ -1,0 +1,108 @@
+{% extends 'Newbase.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+<link rel="stylesheet" href="{% static 'Style/style.css' %}">
+<link rel="stylesheet" href="{% static 'Style/covidInfo.css' %}">
+{% endblock %} 
+{% block title %} Covid Near You... {% endblock %} 
+{% block body %}
+<div class="container text-center">
+    <h1 class="mt-4">E-Laboratories...</h1>
+    <p style="font-size: 1.5rem;" class="mt-3">
+        The concept of E-Laboratories is to reduce the kiosk around taking tests at Path Labs.
+        <br>
+        But What is this kiosk exactly...Click below...To Find Out... :
+    </p>
+    <button class="mt-2 btn btn-warning">Know More</button>
+</div>
+<div ng-app="labs" ng-controller="userLabs">
+    <div class="container">
+        <h1 class="mt-5">Cities Offfering E-Labs...</h1>
+        <hr style="border: 1px solid black;">
+        <p style="font-size: 1.5rem;" class="mt-3">
+            Following are the cities that provide you with E-Labs Explore each of them and See what they offer you...
+        </p>
+        <div class="row text-center">
+            <div class="col-lg-3" ng-repeat="x in labCities">
+                <img
+                    ng-src="{[{x.image}]}"
+                    alt=""
+                    width="140"
+                    height="140"
+                >
+                <h2>{[{x.city}]}</h2>
+                <h4>No of Labs : {[{x.no_labs}]}</h4>
+                <p>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-toggle="modal"
+                        data-target="#staticBackdrop"
+                        ng-click="show(x)"
+                    >
+                        View Details..
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Lab Details...</h5>
+                    <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Select SubUrb : 
+                    <select
+                        class="custom-select mt-2"
+                        ng-model="selectedsubUrb"
+                        ng-options="x for x in subUrbs"
+                        ng-change="setLab(selectedsubUrb)"
+                    ></select>
+                    Select Lab :
+                    <select
+                        class="custom-select mt-2"
+                        ng-model="selectedlab"
+                        ng-options="x for x in labs"
+                        ng-change="setTest(selectedlab)"
+                    ></select>
+                    <ul>
+                        <li ng-repeat = "x in labCost ">
+                            {[{x.test_name}]} : {[{x.cost}]}
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-primary" href="{% url 'book' %}">Start Booking</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
+{% block js %}
+<script src="{% static 'Logic/main.js' %}"></script>
+<script src="{% static 'Logic/animate.js' %}"></script>
+<script src="{% static 'Logic/lab.js' %}"></script>
+{% endblock %}

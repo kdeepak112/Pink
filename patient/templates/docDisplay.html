@@ -1,0 +1,92 @@
+{% extends 'Newbase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+<link rel="stylesheet" href="{% static 'Style/style.css' %}">
+{% endblock %}
+{% block title %} Write Your Blog {% endblock %}
+{% block body %}
+<div class="container text-center d-flex align-items-center justify-content-center mt-5" ng-app="validate" ng-controller="formValidator">
+    <div class="row">
+        {% for i in result %}
+        <div class="col-md-6">
+            <div class="card" style="width: 20rem; height: 32rem;">
+                {% if i.doc_gender == 'male' %}
+                <img
+                    class="card-img-top"
+                    style=" height: 15rem;"
+                    src="https://previews.123rf.com/images/trinadcataya/trinadcataya1709/trinadcataya170900033/86140595-male-doctor-standing-front-side-vector-cartoon-multicolored-portrait-three-quarters-men-physician-pa.jpg"
+                    alt="Card image cap"
+                >
+                {% else %}
+                <img
+                    class="card-img-top"
+                    style="height: 15rem;"
+                    src="https://i.pinimg.com/originals/7e/f3/e6/7ef3e6ca60ab4e8b0584c2c2bae16804.jpg"
+                    alt="Card image cap"
+                >
+                {% endif %}
+                <div class="card-body">
+                    <h4 class="card-title">{{i.doc_name}}</h4>
+                    <div class="card-text">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">Age:</div>
+                            <div class="col-sm-6 col-md-6">{{i.doc_age}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">Email:</div>
+                            <div class="col-sm-6 col-md-6">{{i.doc_email}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">Contact:</div>
+                            <div class="col-sm-6 col-md-6">{{i.doc_contact}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">Speciality:</div>
+                            <div class="col-sm-6 col-md-6">{{i.doc_speciality}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">Experience:</div>
+                            <div class="col-sm-6 col-md-6">{{i.doc_experience}} Years</div>
+                        </div>
+                    </div>
+                    {% if requestList %}
+                    {[{reset()}]}
+                    {% for j in requestList %}
+                    {% if j.to_doctor.id == i.id %}
+                    {% if j.status == 'accepted' %}
+                    <a href="#" class="btn btn-success mt-4">Accepted</a>
+                    {[{set()}]}
+                    {% elif j.status == 'sent' %}
+                    <a href="#" class="btn btn-warning mt-4">Request Sent</a>
+                    {[{set()}]}
+                    {% else %}
+                    
+                    {% endif %}
+                    {% else %}
+                    
+                    {% if forloop.counter == count %}
+                    <div class="container" ng-show="check()">
+                        <a href="{% url 'sendRequest' i.id category %}" class="btn btn-primary mt-4">Send Request</a>
+                    </div>
+                    
+                    {% endif %}
+                    {% endif %}
+                   
+                    
+                    {% endfor %}
+                    {% else %}
+                    <a href="{% url 'sendRequest' i.id category %}" class="btn btn-primary mt-4">Send Request</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'Logic/main.js' %}"></script>
+<script src="{% static 'Logic/animate.js' %}"></script>
+<script src="{% static 'Logic/doctor.js' %}"></script>
+{% endblock %}

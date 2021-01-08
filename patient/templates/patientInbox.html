@@ -1,0 +1,52 @@
+
+
+{% extends 'Newbase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+<link rel="stylesheet" href="{% static 'Style/style.css' %}">
+<style>
+    body{
+        background: linear-gradient(to right, #f3f5ef 13%, #bae1ee 100%);
+    }
+    </style>
+{% endblock %}
+{% block title %} Write Your Blog {% endblock %}
+{% block body %}
+<div class="container text-center mt-5">
+    <h1>See the Inbox of The Doctor Messages.</h1>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th scope="col">Doctor Name</th>
+                <th scope="col">Message</th>
+                <th scope="col">Unread Message</th>
+                <th scope="col">Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x,y  in inbox.items %}
+            <tr>
+                <td>{{ x }}</td>
+                {% for i,j in y.items %}
+                {% if forloop.counter < 4 %}
+                <td>{{ j }}</td>
+                {% else %}
+                <td>
+                    <a href="{% url 'Dmessage' j %}" class="btn btn-warning">See Chat</a>
+                </td>
+                {% endif %}
+                {% endfor %}
+                >
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'Logic/main.js' %}"></script>
+<script src="{% static 'Logic/animate.js' %}"></script>
+<script src="{% static 'Logic/disease.js' %}"></script>
+{% endblock %}
+

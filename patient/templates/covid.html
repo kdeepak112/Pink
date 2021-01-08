@@ -1,0 +1,527 @@
+{% extends 'Newbase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+{% endblock %}
+{% block title %} Covid-19 {% endblock %}
+{% block css %}
+<style>
+            .card {
+                background-image: linear-gradient(to right, blue, white);
+            }
+            .s_nav {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 1.3rem;
+            padding: 7px;
+            flex-wrap: wrap;
+        }
+            @media (max-width:600px) {
+                .s_nav{
+                    flex-direction: column;
+                }
+            }
+</style>
+{% endblock %}
+{% block body %}
+<div id="fb-root"></div>
+<script
+    async
+    defer
+    crossorigin="anonymous"
+    src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v8.0&appId=3270560076336189&autoLogAppEvents=1"
+    nonce="CoF349SN"
+></script>
+<div class="container bg-light p_nav mt-3">
+    <div class="s_nav">
+        <a href="{% url 'selfAssess' %}">Self Assessment test</a>
+        <a href="{% url 'covidInfo' %}">Covid Info near you</a>
+        <a href="{% url 'antibody' %}">Book a Covid Antibody Test</a>
+    </div>
+</div>
+<div class="container mt-4 text-center">
+    <p style="font-size: 2.8rem;">
+        <u>COVID Info...</u>
+    </p>
+    <p style="font-size: 1.5rem;">Stay ahead of coronavirus if you have the following symptoms</p>
+</div>
+<div class=" container img mt-5 text-center">
+    <div class="image">
+        <img src="{% static 'Covid/fever.png' %}">
+        <h3 class="mt-2">Fever</h3>
+    </div>
+    <div class="image">
+        <img src="{% static 'Covid/cough.png' %}">
+        <h3 class="mt-2">Cough</h3>
+    </div>
+    <div class="image">
+        <img src="{% static 'Covid/sore.png' %}">
+        <h3 class="mt-2">Sore Throught</h3>
+    </div>
+    <div class="image">
+        <img src="{% static 'Covid/breathing.png' %}">
+        <h3 class="mt-2">Beathing Difficulty</h3>
+    </div>
+</div>
+<div class="container mt-5 text-center" style="font-size:1.6rem;">
+    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a
+                class="nav-link active"
+                id="home-tab"
+                data-toggle="tab"
+                href="#home"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+            >Facts</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a
+                class="nav-link"
+                id="profile-tab"
+                data-toggle="tab"
+                href="#profile"
+                role="tab"
+                aria-controls="profile"
+                aria-selected="false"
+            >Precautions</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a
+                class="nav-link"
+                id="contact-tab"
+                data-toggle="tab"
+                href="#contact"
+                role="tab"
+                aria-controls="contact"
+                aria-selected="false"
+            >HelpLine</a>
+        </li>
+    </ul>
+    <div class="tab-content text-center" id="myTabContent">
+        <div
+            class="tab-pane mt-4 fade show active"
+            id="home"
+            role="tabpanel"
+            aria-labelledby="home-tab"
+        >
+            <h1 class="mt-3">
+                <b>
+                    <u>What you should know...</u>
+                </b>
+            </h1>
+            <h3 class="mt-3 text-left">
+                <b>What is coronavirus?</b>
+            </h3>
+            <hr style="border:1px solid black">
+            <p class="text-left" style="font-size: 1.3rem;">
+                COVID-19 is a new strain of coronavirus detected in
+                    Wuhan, China, in December 2019. The novel coronavirus (nCoV) has not been previously identified in
+                    humans and can cause a multitude of illnesses ranging from flu-like symptoms to severe acute
+                    respiratory syndrome. The rapid spread of the virus has led to the outbreak being declared as a
+                    global pandemic.
+            </p>
+            <h3 class="mt-3 text-left">
+                <b>What are its symptoms?</b>
+            </h3>
+            <hr style="border:1px solid black">
+            <p class="text-left" style="font-size: 1.3rem;">
+                Moderate to high grade of fever, dry cough and shortness
+                    of breath are common symptoms of coronavirus infection. People with existing health conditions such
+                    as diabetes, hypertension, heart disease, respiratory conditions, compromised immunity and pregnant
+                    women are at higher risk to develop a severe infection.
+            </p>
+            <h3 class="mt-3 text-left">
+                <b>How does it spread?</b>
+            </h3>
+            <hr style="border:1px solid black">
+            <p class="text-left" style="font-size: 1.3rem;">
+                Coronavirus infection can spread via small droplets of
+                    bodily fluids such as saliva or mucus from the nose or mouth which are released when the infected
+                    person exhales, sneezes or coughs. The virus can be transmitted when you touch objects or surfaces
+                    that have these droplets, as well as shake hands of infected persons and consequently, touch parts
+                    of your face or eyes.
+            </p>
+            <h3 class="mt-3 text-left">
+                <b>How is it treated?</b>
+            </h3>
+            <hr style="border:1px solid black">
+            <p class="text-left" style="font-size: 1.3rem;">
+                Currently, there are no vaccines or antiviral
+                    medications that can cure the coronavirus infection. However, certain treatments can help alleviate
+                    the symptoms of fever, cough, and breathing difficulty. People with mild infections can recover at
+                    home on semi-voluntary quarantine. However, when symptoms are not manageable at home, hospital
+                    isolation is considered.
+            </p>
+        </div>
+        <div
+            class="tab-pane fade"
+            id="profile"
+            role="tabpanel"
+            aria-labelledby="profile-tab"
+        >
+            <h1 class="mt-3">
+                <b>
+                    <u>
+                        What precautions to take
+                            to avoid the coronavirus infection...
+                    </u>
+                </b>
+            </h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="imge mt-3" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <img src="{% static 'Covid/wash.png' %}">
+                        <h4>
+                            <br>
+                            Wash your hands frequently
+                        </h4>
+                    </div>
+                    <div class="imge mt-3" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <img src="{% static 'Covid/touch.png' %}">
+                        <h4 class="mt-2">Do not touch your eyes, nose and mouth</h4>
+                    </div>
+                    <div class="imge mt-3">
+                        <img src="{% static 'Covid/clean.png' %}">
+                        <h4 class="mt-2">Clean your hands with sanitizer if soap is not available</h4>
+                    </div>
+                    <div class="imge mt-3" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <img src="{% static 'Covid/avoid.png' %}">
+                        <h4 class="mt-2">Avoid going to crowded places</h4>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="imge mt-3">
+                        <img src="{% static 'Covid/cover.png' %}">
+                        <h4 class="mt-2">Cover your face when cough and sneeze into your elbow</h4>
+                    </div>
+                    <div class="imge mt-3">
+                        <img src="{% static 'Covid/travel.png' %}">
+                        <h4 class="mt-2">Avoid non-essential travel to international locations</h4>
+                    </div>
+                    <div class="imge mt-3">
+                        <img src="{% static 'Covid/mask.png' %}">
+                        <h4 class="mt-2">Wear a mask if you are sick or if you are a healthcare professional</h4>
+                    </div>
+                    <div class="imge mt-3">
+                        <img src="{% static 'Covid/medical.png' %}">
+                        <h4 class="mt-2">
+                            Always keep medical essentials like OTC drugs, thermometer & electrolytes
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="tab-pane fade "
+            id="contact"
+            role="tabpanel"
+            aria-labelledby="contact-tab"
+        >
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mt-4" style="width:30rem; margin: 0 auto; border-radius:15px;">
+                        <div class="card-body">
+                            <h2 class="card-title text-left" style="color: white;text-shadow: 2px 2px black">
+                                Reach out
+                                    to
+                                <br>
+                                government helpline
+                            </h2>
+                            <p class="card-text" style="color: white; font-size: 1.5rem;">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                +91-11-23978046 &nbsp;&nbsp;
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                &nbsp; ncov2019@gmail.com
+                            </p>
+                            <a href="https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf" class="btn btn-warning" style="border-radius:20px ;">
+                                Find helpline numbers for your
+                                    state &nbsp;&nbsp;
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mt-4" style="width:19rem; margin: 0 auto; border-radius:15px;background-image: linear-gradient(to right, grey, white);">
+                        <div class="card-body">
+                            <h2 class="card-title text-left" style="color: white;text-shadow: 2px 2px black">
+                                Reach out
+                                    to
+                                <br>
+                                government helpline
+                            </h2>
+                            <p class="card-text" style="color: white; font-size: 1.5rem;">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                +91-11-23978046
+                                <br>
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                &nbsp; ncov2019@gmail.com
+                            </p>
+                            <a href="https://assets.mfine.co/api/contentservice/attachments/downloadFromDb?fileName=Testing-sites-for-COVID19+(1).pdf.pdf.pdf" class="btn btn-warning" style="border-radius:20px ;">
+                                Find helpline numbers for your
+                                    state &nbsp;&nbsp;
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-5 text-center" style="width: 98%;">
+    <div class="text-center">
+        <p style="font-size: 2.8rem;">
+            <u>Latest Updates...</u>
+        </p>
+        <p style="font-size: 1.5rem;">Have a look at what WHO has to say...</p>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div
+                class="fb-page"
+                data-href="https://www.facebook.com/WHO/"
+                data-tabs="timeline"
+                data-width=""
+                data-height=""
+                data-small-header="true"
+                data-adapt-container-width="true"
+                data-hide-cover="false"
+                data-show-facepile="true"
+            >
+                <blockquote cite="https://www.facebook.com/WHO/" class="fb-xfbml-parse-ignore">
+                    <a href="https://www.facebook.com/WHO/">World Health Organization (WHO)</a>
+                </blockquote>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="container">
+                <a
+                    class="twitter-timeline"
+                    data-width="500"
+                    data-height="500"
+                    data-theme="dark"
+                    href="https://twitter.com/WHO?ref_src=twsrc%5Etfw"
+                >Tweets by WHO</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!--<p style="font-size: 2.8rem;">
+                <u>Self Assessment Test...</u>
+            </p>
+            <p style="font-size: 1.5rem;">Take our self assesment test and know the truth...</p>
+            <div id="first">
+                <h3>Start Assessment</h3>
+                <button class="btn btn-primary" id="next">Yes</button>
+            </div>
+            <!-- QUESTIONERE 
+            <div class="question" id="q1">
+                <h3>Are you experiencing any of the following symptoms?</h3>
+                <ul style="text-align: left;">
+                    <li>
+                        severe difficulty breathing (for example, struggling for each breath, speaking in single
+                            words)
+                    </li>
+                    <li>severe chest pain</li>
+                    <li>
+                        having a very hard time waking up
+                    </li>
+                    <li>
+                        feeling confused
+                    </li>
+                    <li>lost consciousness</li>
+                </ul>
+                <button class="btn btn-primary" id="q1b">No</button>
+                <button class="btn btn-primary" id="q2b">Yes</button>
+            </div>
+            <div class="question" id="q2">
+                <h5>
+                    <a role="button" id="q2r" style="cursor: pointer;">
+                        <u>Return to Previous question</u>
+                    </a>
+                </h5>
+                <h3>Are you experiencing any of the following symptoms (or a combination of these symptoms)?</h3>
+                <ul style="text-align: left;">
+                    <li>fever</li>
+                    <li>new cough</li>
+                    <li>
+                        difficulty breathing (for example, struggling for each breath, cannot hold breath for more
+                            than
+                            10 seconds)
+                    </li>
+                </ul>
+                <button class="btn btn-primary" id="q3b">No</button>
+                <button class="btn btn-primary" id="q4b">Yes</button>
+            </div>
+            <div class="question" id="q3">
+                <h5>
+                    <a role="button" id="q3r" style="cursor: pointer;">
+                        <u>Return to Previous question</u>
+                    </a>
+                </h5>
+                <h3>Are you experiencing any of the following symptoms (or a combination of these symptoms)?</h3>
+                <ul style="text-align: left;">
+                    <li>muscle aches</li>
+                    <li>fatigue</li>
+                    <li>headache</li>
+                    <li>sore throat</li>
+                    <li>runny nose</li>
+                </ul>
+                <button class="btn btn-primary" id="q5b">No</button>
+                <button class="btn btn-primary" id="q6b">Yes</button>
+            </div>
+            <div class="question" id="q4">
+                <h5>
+                    <a role="button" id="q4r" style="cursor: pointer;">
+                        <u>Return to Previous question</u>
+                    </a>
+                </h5>
+                <h3>Have you travelled outside of India in the last 14 days?</h3>
+                <button class="btn btn-primary" id="q7b">No</button>
+                <button class="btn btn-primary" id="q8b">Yes</button>
+            </div>
+            <div class="question" id="q5">
+                <h5>
+                    <a role="button" id="q5r" style="cursor: pointer;">
+                        <u>Return to Previous question</u>
+                    </a>
+                </h5>
+                <h3>
+                    Does someone you are in close contact with have COVID-19 (for example, someone in your household
+                        or workplace)?
+                </h3>
+                <button class="btn btn-primary" id="q9b">No</button>
+                <button class="btn btn-primary" id="q10b">Yes</button>
+            </div>
+            <div class="question" id="q6">
+                <h5>
+                    <a role="button" id="q6r" style="cursor: pointer;">
+                        <u>Return to Previous question</u>
+                    </a>
+                </h5>
+                <h3>
+                    Are you in close contact with a person who is sick with respiratory symptoms (for example,
+                        fever, cough or difficulty breathing) who recently travelled outside of India?
+                </h3>
+                <button class="btn btn-primary" id="q11b">No</button>
+                <button class="btn btn-primary" id="q12b">Yes</button>
+            </div>
+              RESULT SECTIONS  
+            <div class="question" id="emergencyInfo">
+                <h3>Self-assessment result</h3>
+                <h5>
+                    Please call 1075, +91-11-23978046 or email at ncov2019@gmail.com or go directly to your nearest
+                        emergency department.
+                </h5>
+                <p>
+                    <small>Data Adapted from Ministry of Health and Family Welfare.</small>
+                </p>
+                <button class="btn btn-primary" onclick="location.reload();">Take The Assessment again...</button>
+            </div>
+            <div class="question" id="callNurse">
+                <h3>Self-assessment result</h3>
+                <h5>Please seek clinical assessment for COVID-19 over the phone.</h5>
+                <p style="font-size:1.2rem;">Contact either:</p>
+                <ul style="text-align: left;">
+                    <li>your primary care provider (for example, family doctor) for a virtual assessment</li>
+                    <li>
+                        Please call at Toll free: 1075 or
+                        <a href="tel:+911123978046">+91-11-23978046</a>
+                        and to
+                            speak with a COVID-19 Emergency Helpline
+                    </li>
+                </ul>
+                <p>
+                    <small>Data Adapted from Ministry of Health and Family Welfare.</small>
+                </p>
+                <button class="btn btn-primary" onclick="location.reload();">Take The Assessment again...</button>
+            </div>
+            <div class="question" id="selfIsolate">
+                <h3>Self-assessment result</h3>
+                <ul style="text-align: left;">
+                    <li>
+                        It is unlikely that you have COVID-19 but you should self-isolate at home until you are
+                            symptom-free.
+                    </li>
+                </ul>
+                <button class="btn btn-primary" onclick="location.reload();">Take The Assessment again...</button>
+            </div>
+            <div class="question" id="unlikelyCovid19">
+                <h3>Self-assessment result</h3>
+                <ul style="text-align: left;">
+                    <li>
+                        It is unlikely that you have COVID-19 but you should self-isolate at home until you are
+                            symptom-free.
+                    </li>
+                </ul>
+                <button class="btn btn-primary" onclick="location.reload();">Take The Assessment again...</button>
+            </div>
+            <div class="question" id="unlikelySick">
+                <h3>Self-assessment result</h3>
+                <ul style="text-align: left;">
+                    <li>It is unlikely that you have COVID-19.</li>
+                </ul>
+                <h3>You Should</h3>
+                <ul style="text-align: left;">
+                    <li>practice social distancing in order to decrease risk of COVID-19 transmission.</li>
+                </ul>
+                <h3>if you:</h3>
+                <ul style="text-align: left;">
+                    <li>are over 70</li>
+                    <li>
+                        are immunocompromised (for example if you have HIV/AIDS, are receiving immunosuppression
+                            therapy
+                            or treatment for cancer or have had a transplant)
+                    </li>
+                    <li>have returned to India from travel in the last 14 days</li>
+                    <li>have come into contact with someone with respiratory symptoms</li>
+                </ul>
+                <button class="btn btn-primary" onclick="location.reload();">Take The Assessment again...</button>
+            </div>-->
+            <div>
+                <iframe
+                    width="460"
+                    height="315"
+                    src="https://www.youtube.com/embed/videoseries?list=PL9S6xGsoqIBU2V6AZYGlJwZRAFJ3YDreb"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<article class="bg-secondary mb-3">
+    <div class="card-body text-center">
+        <h3 class="text-white mt-3">Pink pvt Ltd.</h3>
+        <p class="h5 text-white">
+            All Rights reserved
+            <br>
+            Contact us at
+            <br>
+            dkumardk002@gmail.com
+        </p>
+        <br>
+        <p>
+            <a class="btn btn-warning" target="_blank" href="question">
+                www.pink.com
+                <i class="fa fa-window-restore "></i>
+            </a>
+        </p>
+    </div>
+    <br>
+    <br>
+</article>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+{% block js %}
+<script src="{% static 'Logic/main.js' %}"></script>
+{% endblock %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+
+
+
+.chatInterface{
+    padding: 0;
+    width: 30rem;
+    background-color: #dcf8c6;
+    
+}
+
+.pmessage{
+    background-color:  #25d366;
+    padding: 6%;
+    border-radius: 2%;
+}
+
+.dmessage{
+    background-color: lightblue;
+    padding: 6%;
+    border-radius: 2%;
+}
+
+strong{
+    font-size: 1.2rem;
+}
+
+.mainMessage::-webkit-scrollbar {
+    display: none;
+}
+

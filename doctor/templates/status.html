@@ -1,0 +1,37 @@
+{% extends 'doctorBase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'main.css' %}">
+{% endblock %}
+{% block title %} Online Doctors {% endblock %}
+{% block css %}
+<style></style>
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row my-auto" >
+        <div class="col-md-12 text-center">
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="font-size: 1.2rem; margin: auto;">
+                <strong>{{ result }}</strong>
+            </div>
+            <a href="{% url 'docHome' %}" class="btn btn-warning mt-4">Login</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'check.js' %}"></script>
+<script>
+function display(){
+    if(document.getElementById("service").style.display === "none"){
+        console.log("doing block");
+        document.getElementById("service").style.display = "block";
+    }
+    else{
+        console.log("none hai");
+        document.getElementById("service").style.display = "none";
+    }
+}
+</script>
+{% endblock %}

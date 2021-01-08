@@ -1,0 +1,65 @@
+{% extends 'doctorBase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/main.css' %}">
+{% endblock %}
+{% block title %} Confirm and Unconfirm Booking {% endblock %}
+{% block css %}
+<style>
+body{
+    background: linear-gradient(to right, #f3f5ef 13%, #bae1ee 100%);
+}
+</style>
+{% endblock %}
+{% block body %}
+<div class="container text-center mt-5">
+    <h1>See the list of requests of patients and take the neccessary action.</h1>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Patient gender</th>
+                <th scope="col">Patient Age</th>
+                <th scope="col">Confirm</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for docList in patientList %}
+            <tr>
+                <td>{{ docList.from_patient.patient_name }}</td>
+                <td>{{ docList.from_patient.patient_gender }}</td>
+                <td>{{ docList.from_patient.patient_age }}</td>
+                <td>
+                    <a href="{% url 'patientConfirm' docList.id %}">
+                        <i class="fas fa-check-circle"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'patientDelete' docList.id %}">
+                        <i class="fas fa-times-circle"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'Logic/Labsignup.js' %}"></script>
+<script src="{% static 'Logic/bookingStatus.js' %}"></script>
+<script>
+function display(){
+    if(document.getElementById("service").style.display === "none"){
+        console.log("doing block");
+        document.getElementById("service").style.display = "block";
+    }
+    else{
+        console.log("none hai");
+        document.getElementById("service").style.display = "none";
+    }
+}
+</script>
+{% endblock %}

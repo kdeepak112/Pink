@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <!-- Required meta tags -->
+        <title>See Your Booking And Test Reports</title>
+        <!--All Style tags-->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous"
+        >
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+            crossorigin="anonymous"
+        >
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+        <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@300&display=swap" rel="stylesheet">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+            integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+            crossorigin="anonymous"
+        >
+        <!--All CSS Files-->
+        <link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+        <style>
+    body{
+        background: linear-gradient(to right, #f3f5ef 13%, #bae1ee 100%);
+    }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="brand-title text-left">
+                Pink
+            </div>
+            <a href="#" class="toggle-button" id="but">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+        </nav>
+        <div class="container text-center mt-5">
+            <h1>See Your Bookings Here and Download Or View Your Test Results if informed to do so...</h1>
+            <table class="table mt-4" id="_appendHere" style="background-color: white;">
+                <thead>
+                    <tr>
+                        <th scope="col">Patient id</th>
+                        <th scope="col">Patient name</th>
+                        <th scope="col">Patient Contact</th>
+                        <th scope="col">Patient email</th>
+                        <th scope="col">Patient Age</th>
+                        <th scope="col">Patient gender</th>
+                        <th scope="col">Test name</th>
+                        <th scope="col">Test date</th>
+                        <th scope="col">Test time</th>
+                    </tr>
+                </thead>
+                {% for i in record %}
+                <tbody>
+                    <tr>
+                        <th scope="row">{{ i.pid }}</th>
+                        <td>{{ i.pname }}</td>
+                        <td>{{ i.pcontact }}</td>
+                        <td>{{ i.pemail }}</td>
+                        <td>{{ i.page }}</td>
+                        <td>{{ i.pgender }}</td>
+                        <td>{{ i.test_name }}</td>
+                        <td>{{ i.test_date }}</td>
+                        <td>{{ i.test_time }}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+        <script src="{% static 'Logic/main.js' %}"></script>
+        <script src="{% static 'Logic/signup.js' %}"></script>
+    </body>
+</html>

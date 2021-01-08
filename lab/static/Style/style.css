@@ -1,0 +1,49 @@
+.type-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2% auto;
+    
+}
+
+.type-text p {
+    font-size: 4rem;
+}
+
+
+.type-text p span.cursor {
+    display: inline-block;
+    background-color: black;
+    
+    margin-left: 0.1rem;
+    width: 3px;
+    animation: blink 700ms infinite;
+}
+
+@keyframes blink {
+    
+        0% {
+            background-color: black;
+        }
+        49% {
+            background-color: black;
+        }
+        50% {
+            background-color: transparent;
+        }
+        99% {
+            background-color: transparent;
+        }
+        100% {
+            background-color: black;
+        }
+    
+}
+
+.dic ul li a{
+    font-size: 1.5rem !important;
+}
+
+.card-info{
+    color:black;
+}

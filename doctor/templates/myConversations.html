@@ -1,0 +1,55 @@
+{% extends 'doctorBase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/main.css' %}">
+{% endblock %}
+{% block title %} Confirm and Unconfirm Booking {% endblock %}
+{% block css %}
+<style>
+body{
+    background: linear-gradient(to right, #f3f5ef 13%, #bae1ee 100%);
+}
+</style>
+{% endblock %}
+{% block body %}
+<div class="container text-center mt-5">
+    <h1>See the new messages and conversations.</h1>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Patient Age</th>
+                <th scope="col">Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in patientList %}
+            <tr>
+                <td>{{ x.from_patient.patient_name }}</td>
+                <td>{{ x.from_patient.patient_age }}</td>
+                <td>
+                    <a href="{% url 'Pmessage' x.from_patient.id %}"  class="btn btn-warning">Go to Chat</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'Logic/Labsignup.js' %}"></script>
+<script src="{% static 'Logic/bookingStatus.js' %}"></script>
+<script>
+function display(){
+    if(document.getElementById("service").style.display === "none"){
+        console.log("doing block");
+        document.getElementById("service").style.display = "block";
+    }
+    else{
+        console.log("none hai");
+        document.getElementById("service").style.display = "none";
+    }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,191 @@
+{% extends 'doctorBase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/main.css' %}">
+<link rel="stylesheet" href="{% static 'Style/message.css' %}">
+{% endblock %}
+{% block title %} {{pid.patient_name}} - {{did.doc_name}} {% endblock %}
+{% block css %}
+<style>
+body{
+     background: #727a74;
+}
+
+@media (max-width:1000px){
+    .send , .receive{
+        display: none;
+    }
+
+}
+
+</style>
+<script></script>
+{% endblock %}
+{% block body %}
+<div ng-app="confirmApp" ng-controller="confirmthisapp">
+    {[{ lab({{ pid.id }},{{ did.id }}) }]}
+    <div class="container-fluid" style="width:92%;">
+        <div class="row">
+            <div class="col-md-3 receive">
+                <div class="card card-cascade card-ecommerce wider mt-5" data-aos="fade-left">
+                    <!--Card image-->
+                    <div class="view view-cascade overla2">
+                        {% if did.doc_gender == 'male' %}
+                        <img
+                            class="card-img-top"
+                            style=" height: 15rem;"
+                            src="https://previews.123rf.com/images/trinadcataya/trinadcataya1709/trinadcataya170900033/86140595-male-doctor-standing-front-side-vector-cartoon-multicolored-portrait-three-quarters-men-physician-pa.jpg"
+                            alt="Card image cap"
+                        >
+                        {% else %}
+                        <img
+                            class="card-img-top"
+                            style="height: 15rem;"
+                            src="https://i.pinimg.com/originals/7e/f3/e6/7ef3e6ca60ab4e8b0584c2c2bae16804.jpg"
+                            alt="Card image cap"
+                        >
+                        {% endif %}
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+                    <!--/.Card image-->
+                    <!--Card content-->
+                    <div class="card-body card-body-cascade text-center">
+                        <!--Category & Title-->
+                        <h4 class="card-title" style="font-size: 35px;">
+                            <strong>
+                                <a href="">
+                                    {{did.doc_name}}
+                                </a>
+                            </strong>
+                        </h4>
+                        <!--Description-->
+                        <div class="d-flex justify-content-around align-items-center">
+                            <h3>Speciality:</h3>
+                            <h3>{{did.doc_speciality}}</h3>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-warning">Know More</button>
+                        </div>
+                        <!--Card footer-->
+                    </div>
+                    <!--/.Card content-->
+                </div>
+            </div>
+            <div class=" col-sm-12 col-xs-12 col-md-12 col-lg-6 mt-2 text-right chatInterface" style="margin: 0 auto; width: 40rem;">
+                <div class="row mainMessage" id="messageDiv" style="margin: 3% auto;  overflow:scroll; overflow-x: hidden;  height:33rem;">
+                    <div class="col-sm-6 col-xs-6 col-md-6 text-left" style="display: flex; flex-direction: column;">
+                        <div class="pmessage" style="margin-top: 20%;" ng-repeat="i in messages">
+                            <b>{{ did.doc_name }}</b>
+                            <br>
+                            <strong>{[{ i.message }]}</strong>
+                            <br>
+                            {[{ i.timestamp }]}
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-6 col-md-6 text-right" style="display: flex; flex-direction: column;">
+                        {% for i in docmsg %}
+                        <div class="dmessage" style="margin-top: 45%;">
+                            <b>You</b>
+                            <br>
+                            <strong>{{ i.message }}</strong>
+                            <br>
+                            {{ i.timestamp }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="container d-flex mt-0" style="width: 80%;">
+                    <form action="SendDocMssg/" method="post" class="d-flex">
+                        {% csrf_token %}
+                        <input
+                            id="sendMessage"
+                            name="Message"
+                            class="form-control"
+                            placeholder="Write Message"
+                            type="Text"
+                            size="150"
+                            required
+                        >
+                        <input
+                            style="display: none;"
+                            type="number"
+                            readonly
+                            value="{{ did.id }}"
+                            name="doctorID"
+                            readonly
+                        >
+                        <div>
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fa fa-paper-plane" style="height: 1.3rem;" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3 send">
+                <div class="card card-cascade card-ecommerce wider mt-5" data-aos="fade-left">
+                    <!--Card image-->
+                    <div class="view view-cascade overla2">
+                        <img
+                            class="card-img-top img-fluid img-responsive"
+                            src="{{pid.patient_image.url}}"
+                            alt=""
+                            style="height: 13rem;"
+                        >
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+                    <!--/.Card image-->
+                    <!--Card content-->
+                    <div class="card-body card-body-cascade text-center">
+                        <!--Category & Title-->
+                        <h4 class="card-title" style="font-size: 35px;">
+                            <strong>
+                                <a href="">
+                                    {{pid.patient_name}}
+                                </a>
+                            </strong>
+                        </h4>
+                        <!--Description-->
+                        <div class="d-flex justify-content-around align-items-center">
+                            <h3>Age :</h3>
+                            <h3>{{pid.patient_age}}</h3>
+                        </div>
+                        <div class="d-flex justify-content-around align-items-center">
+                            <h3>Gender :</h3>
+                            <h3>{{pid.patient_gender}}</h3>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-warning">Know More</button>
+                        </div>
+                        <!--Card footer-->
+                    </div>
+                    <!--/.Card content-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'Logic/pmessage.js' %}"></script>
+<script>
+var elmnt = document.getElementById("div1");
+console.log(elmnt.scrollHeight);
+elmnt.scrollTop = elmnt.scrollHeight
+function display(){
+    if(document.getElementById("service").style.display === "none"){
+        console.log("doing block");
+        document.getElementById("service").style.display = "block";
+    }
+    else{
+        console.log("none hai");
+        document.getElementById("service").style.display = "none";
+    }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'Newbase.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Style/nav.css' %}">
+<link rel="stylesheet" href="{% static 'Style/style.css' %}">
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+      selector: '#mytextarea',
+      plugins: [
+      'advlist autolink link image lists charmap print preview hr anchor pagebreak',
+      'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+      'table emoticons template paste help'
+    ],
+    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
+      'bullist numlist outdent indent | link image | print preview media fullpage | ' +
+      'forecolor backcolor emoticons | help',
+    menu: {
+      favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+    },
+    menubar: 'favs file edit view insert format tools table help',
+    content_css: 'css/content.css'
+    });
+</script>
+{% endblock %}
+{% block title %} Write Your Blog {% endblock %}
+{% block body %}
+<div class="alert alert-success  text-center alert-dismissible fade show" role="alert" style="font-size: 1.2rem;">
+    <strong>Please Note...</strong>
+    We advise you to be general in your
+    <br>
+    approach by not targetting any individual or an organisation in your words and also make sure that you dont use any abusive or agressive words.. &nbsp;
+    <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+    >
+        <span>&times;</span>
+    </button>
+</div>
+<div class="container  text-center" style="margin: auto;">
+    <div class="container bg-light p_nav mt-3">
+        <div class="container bg-light p_nav mt-3" >
+            <div class="s_nav" style="display: flex; align-items: center; justify-content: space-evenly; font-size: 1.3rem;">
+                <a href="{% url 'allBlog' %}">See Other's Blog</a>
+                <a href="{% url 'yourBlog' %}">See Your Blogs</a>
+                <a>Contact Administrator</a>
+            </div>
+        </div>
+    </div>
+    <h1 class="mt-5">WRITE A BLOG...</h1>
+    <h3 class="mt-5">Start Writing some wonderful stuff and post it so that our big community world have a thought on your thought... Happy Writing Cheers...</h3>
+    <div class="container mt-5">
+        <form action="/blogEntry/{{ username.id }}/" method="post">
+            {% csrf_token %}
+            <h4 class="mt-4">Topic:</h4>
+            <div class="input-group mb-3">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Topic Name"
+                    maxlength="40"
+                    name="topic"
+                    size="40"
+                >
+            </div>
+            <h4 class="mt-4">Descritpion:</h4>
+            <div class="input-group mb-3">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Descritpion"
+                    maxlength="140"
+                    name="desc"
+                    size="140"
+                >
+            </div>
+            <h4 class="mt-4">Blog Content :</h4>
+            <textarea id="mytextarea" style="height:50vh;" name="content">Hello, World!</textarea>
+            <button type="submit" class="btn btn-primary btn-block mt-3 " style="margin: 0 auto; width: 20%;">
+                Upload Blog
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'Logic/main.js' %}"></script>
+<script src="{% static 'Logic/animate.js' %}"></script>
+<script src="{% static 'Logic/disease.js' %}"></script>
+{% endblock %}

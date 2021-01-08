@@ -1,0 +1,48 @@
+
+.data{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.total,
+.active,
+.confirmed,
+.death{
+    border: 2px solid white;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 5rem;
+    color:white;
+    background-color: #8694f0;
+    margin: 0 1%;
+}
+
+.stateData{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stateData > div{
+    margin: 0 1%;
+    color:white;
+    background-color: #8694f0;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 4rem;
+    border: 2px solid white;
+    
+}
+
+.back{
+    cursor: pointer;
+}
+
+.self{
+   margin: 7rem auto;
+}
+
+.info{
+    font-size: 1.6rem;
+}
