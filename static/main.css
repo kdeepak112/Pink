@@ -1,0 +1,142 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.navbarImg {
+    height: 42rem;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+#service {
+    display: block;
+}
+
+.services ul {
+    width: 30rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.services ul>li {
+    list-style: none;
+    background-color: white;
+    color:lightblue;
+    font-weight: bold;
+    padding: 0.6rem;
+    border-radius: 19px;
+}
+
+.services ul>li a {
+    text-decoration: none;
+}
+
+.responsive {
+    position: absolute;
+    font-size: 1.4rem;
+    top: 2rem;
+    right: 2.1rem;
+    cursor: pointer;
+    display: none;
+}
+
+.testUs {
+    margin: 10% auto 0 auto;
+}
+
+.btn-transparent {
+    border: 2px solid white;
+}
+
+@media (max-width:600px) {
+    #service {
+        display: none;
+    }
+    .services ul {
+        width: 30rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .responsive {
+        display: block;
+    }
+    .title {
+        margin-right: auto;
+    }
+    .services ul>li {
+        list-style: none;
+        width: 100%;
+        padding: 5px;
+        text-align: center;
+    }
+}
+
+#f1_container {
+    position: relative;
+    margin: 10px auto;
+    width: 450px;
+    height: 281px;
+    z-index: 1;
+}
+
+#f1_container {
+    position: relative;
+    margin: 10px auto;
+    width: 450px;
+    height: 281px;
+    z-index: 1;
+}
+
+#f1_container {
+    perspective: 1000;
+}
+
+#f1_card {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.8s linear;
+}
+
+#f1_container:hover #f1_card {
+    transform: rotateY(180deg);
+    box-shadow: -5px 5px 5px #aaa;
+}
+
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.image {
+    width: 28rem;
+    height: 17.2rem;
+    border: 2px solid black;
+}
+
+.face.back {
+    display: block;
+    transform: rotateY(180deg);
+    box-sizing: border-box;
+    padding: 10px;
+    color: black;
+    text-align: center;
+    background-color: white;
+}
+
+.title{
+    color:white;
+}
